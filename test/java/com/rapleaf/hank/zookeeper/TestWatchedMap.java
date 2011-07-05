@@ -1,5 +1,7 @@
 package com.rapleaf.hank.zookeeper;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
@@ -9,7 +11,8 @@ import com.rapleaf.hank.zookeeper.WatchedMap.ElementLoader;
 
 public class TestWatchedMap extends ZkTestCase {
   public void testIt() throws Exception {
-//    Logger.getLogger("org.apache.zookeeper").setLevel(Level.ALL);
+    //org.apache.log4j.Logger.getLogger("org.apache.zookeeper").setLevel(Level.ALL);
+    Logger.getLogger("org.apache.zookeeper").setLevel(Level.ALL);
 
     final ZooKeeperPlus zk = getZk();
     final String colRoot = getRoot() + "/collection";
