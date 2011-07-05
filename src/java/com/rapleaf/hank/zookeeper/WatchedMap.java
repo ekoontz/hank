@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
@@ -23,7 +24,10 @@ public class WatchedMap<T> extends AbstractMap<String, T> implements Watcher {
   private final Object changeMutex = new Object();
   private final ElementLoader<T> elementLoader;
 
+  private static final Logger LOG = Logger.getLogger(WatchedMap.class);
+
   public WatchedMap(ZooKeeperPlus zk, String basePath, ElementLoader<T> elementLoader) {
+
     this.zk = zk;
     this.path = basePath;
     this.elementLoader = elementLoader;
@@ -55,6 +59,7 @@ public class WatchedMap<T> extends AbstractMap<String, T> implements Watcher {
   @Override
   public void process(WatchedEvent event) {
     // only operate if we're connected
+    LOG.debug("WATCHED MAP: " + event.toString());
     if (event.getState() != KeeperState.SyncConnected) {
       return;
     }

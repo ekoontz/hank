@@ -13,7 +13,7 @@ public class TestWatchedMap extends ZkTestCase {
   public void testIt() throws Exception {
     //org.apache.log4j.Logger.getLogger("org.apache.zookeeper").setLevel(Level.ALL);
     Logger.getLogger("org.apache.zookeeper").setLevel(Level.ALL);
-
+    Logger.getLogger("com.rapleaf.hank.zookeeper").setLevel(Level.ALL);
     final ZooKeeperPlus zk = getZk();
     final String colRoot = getRoot() + "/collection";
     zk.create(colRoot, null, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
